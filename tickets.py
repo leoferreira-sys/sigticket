@@ -74,34 +74,34 @@ def listar_tickets():
     print(f"Total: {len(tickets)} ticket(s)")
 
 
-def mudar_status(minha_lista_de_tickets, valor_para_x):
+def mudar_status():
     """Altera status com validação."""
     STATUS_VALIDOS = ["aberto", "em_andamento", "resolvido", "fechado"]
-
+    
     listar_tickets()
-
+    
     try:
-        ticket_id = int(input("\nID do ticket:"))
+        ticket_id = int(input("\nID do ticket: "))
     except ValueError:
         print("✗ ID inválido")
         return
-
+    
     print("\nStatus válidos:")
     for s in STATUS_VALIDOS:
-        print(f"- {s}")
-
-    novo_status = input("\nNovo status:").strip().lower()
-
+        print(f"  - {s}")
+    
+    novo_status = input("\nNovo status: ").strip().lower()
+    
     if novo_status not in STATUS_VALIDOS:
-        print(f"✗ Status inválido! Use: {','.join(STATUS_VALIDOS)}")
+        print(f"✗ Status inválido! Use: {', '.join(STATUS_VALIDOS)}")
         return
-
+    
     for t in tickets:
         if t["id"] == ticket_id:
             t["status"] = novo_status
             print(f"✓ Status alterado para: {novo_status}")
             return
-
+    
     print("✗ Ticket não encontrado")
 
 
@@ -165,13 +165,7 @@ def main():
                 listar_tickets()
             
             elif opcao == "3":
-                listar_tickets()
-                try:
-                    tid = int(input("\nID do ticket: "))
-                    novo_status = input("Novo status: ")  # BUG #1: Sem validação!
-                    mudar_status(tid, novo_status)
-                except ValueError:
-                    print("\n✗ ID inválido!")
+                mudar_status()
             
             elif opcao == "4":
                 try:
