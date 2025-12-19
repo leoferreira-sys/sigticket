@@ -148,8 +148,8 @@ def main():
     print("\n🎫 Bem-vindo ao SigTicket!")
     
     # Autenticação simples
-    if not autenticar():
-        print("Acesso negado. Encerrando...")
+    if not fazer_login():
+        
         return
     
     # Loop principal do menu
@@ -166,13 +166,7 @@ def main():
                 listar_tickets()
             
             elif opcao == "3":
-                listar_tickets()
-                try:
-                    tid = int(input("\nID do ticket: "))
-                    novo_status = input("Novo status: ")  # BUG #1: Sem validação!
-                    mudar_status(tid, novo_status)
-                except ValueError:
-                    print("\n✗ ID inválido!")
+                mudar_status()
             
             elif opcao == "4":
                 try:
